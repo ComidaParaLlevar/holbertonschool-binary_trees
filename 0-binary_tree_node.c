@@ -12,7 +12,7 @@ binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
 
     /*Create space in memory for node*/
     new_node = malloc(sizeof(binary_tree_t));
-    if (new_node == NULL);
+    if (new_node == NULL)
         return (NULL);
 
     /*Connect node to binary tree and add value*/
