@@ -3,7 +3,7 @@
  * binary_tree_preorder - traverses in pre-order to apply function
  * @tree: pointer to root node
  * @func: function to apply to value
- * 
+ *
  * Return: nothing
 */
 void binary_tree_preorder(const binary_tree_t *tree, void (*func)(int))
