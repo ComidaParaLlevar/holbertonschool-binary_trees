@@ -24,14 +24,17 @@ size_t binary_tree_size(const binary_tree_t *tree)
 {
 	size_t height_l;
 	size_t height_r;
+	size_t totalSize;
 
 	if (tree == NULL)
 		return (0);
 
-	height_l = tree->left ? 1 + binary_tree_height(tree->left) : 0;
-	height_r = tree->right ? 1 + binary_tree_height(tree->right) : 0;
-	return (height_l + height_r + 1);
+	height_l = tree->left ? binary_tree_size(tree->left) : 0;
+	height_r = tree->right ? binary_tree_size(tree->right) : 0;
+	totalSize = height_l + height_r;
+	return (totalSize + 1);
 }
+
 
 
 size_t binary_tree_depth(const binary_tree_t *tree)
