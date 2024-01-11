@@ -5,7 +5,7 @@
 * @tree: Pointer to the node to measures the height
 * Return: The height of the tree starting at @node
 */
-static size_t _height(const binary_tree_t *tree)
+size_t _height(const binary_tree_t *tree)
 {
 	size_t height_l;
 	size_t height_r;
