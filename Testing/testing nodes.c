@@ -34,18 +34,18 @@ int binary_tree_balance(const binary_tree_t *tree)
 	
 	if (tree->left != NULL && tree->right != NULL)
 	{
-		leaves_l = binary_tree_nodes(tree->left);
-		leaves_r = binary_tree_nodes(tree->right);
+		leaves_l = binary_tree_balance(tree->left);
+		leaves_r = binary_tree_balance(tree->right);
 		return (-leaves_r + leaves_l);
 	}
 	if (tree->left == NULL && tree->right != NULL)
 	{
-		leaves_r = -1 + binary_tree_nodes(tree->right);
+		leaves_r = -1 + binary_tree_balance(tree->right);
 		return (leaves_r);
 	}
 	if (tree->left != NULL && tree->right == NULL)
 	{
-		leaves_l = -1 + binary_tree_nodes(tree->left);
+		leaves_l = 1 + binary_tree_balance(tree->left);
 		return (leaves_l);
 	}
 
