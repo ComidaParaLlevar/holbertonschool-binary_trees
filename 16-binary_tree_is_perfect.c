@@ -1,38 +1,51 @@
 #include "binary_trees.h"
 
 /**
-* binary_tree_balance - checks if it is balanced
+* binary_tree_is_perfect - Checks if the tree is perfect
 * @tree: Pointer to the node to measures the height
-* Return: how balanced it is.
+* Return: 1 or 0
 */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	int height_l = 0;
-	int height_r = 0;
-	
-	if (tree == NULL)
-		return (0);
-	
-	height_l = binary_tree_height(tree->left);
-	height_r = binary_tree_height(tree->right);
-	
-	return (height_l == height_r ? 1 : 0);
+	int expectedDepth = binary_tree_depth(tree);
+	bool check = isPerfect(tree, expectedDepth);
+
+	return (check);
 }
 
 /**
-* binary_tree_height - Measures the height of a binary tree
+* binary_tree_depth - Measures the depth of a node
 * @tree: Pointer to the node to measures the height
-* Return: The height of the tree starting at @node
+* Return: how far away the node is from the parent
 */
-size_t binary_tree_height(const binary_tree_t *tree)
+size_t binary_tree_depth(const binary_tree_t *tree)
 {
-	size_t height_l;
-	size_t height_r;
-	
+	size_t depth;
+
 	if (tree == NULL)
 		return (0);
-	
-	height_l = tree->left ? binary_tree_height(tree->left) : 0;
-	height_r = tree->right ? binary_tree_height(tree->right) : 0;
-	return ((height_l > height_r ? height_l : height_r) + 1);
+
+	depth = tree->parent ? 1 + binary_tree_depth(tree->parent) : 0;
+	return (depth);
+}
+
+/**
+* isPerfect - checks if it is perfect
+* @tree: Pointer to the node to measures the height
+* @Depth: the depth of the node
+* Return: how far away the node is from the parent
+*/
+bool isPerfect(const binary_tree_t *tree, int Depth)
+{
+	bool check;
+
+	if (tree == NULL)
+		return (0);
+
+	if (!tree->left != !tree->right)
+		return (false);
+	check = Depth >= 0 &&
+	isPerfect(tree->left, Depth - 1l) &&
+	isPerfect(tree->right, Depth - 1);
+	return (check);
 }
