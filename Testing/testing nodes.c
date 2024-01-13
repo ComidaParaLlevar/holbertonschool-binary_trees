@@ -26,32 +26,30 @@ int main(int argc, char *argv[]){
 
 int binary_tree_balance(const binary_tree_t *tree)
 {
-	size_t leaves_l = 0;
-	size_t leaves_r = 0;
+	int height_l = 0;
+	int height_r = 0;
+
+	if (tree == NULL)
+		return (0);
+
+	height_l = binary_tree_height(tree->left);
+	height_r = binary_tree_height(tree->right);
+
+	return (height_l -  height_r);
+}
+
+size_t binary_tree_height(const binary_tree_t *tree)
+{
+	size_t height_l;
+	size_t height_r;
 	
 	if (tree == NULL)
 		return (0);
 	
-	if (tree->left != NULL && tree->right != NULL)
-	{
-		leaves_l = binary_tree_balance(tree->left);
-		leaves_r = binary_tree_balance(tree->right);
-		return (-leaves_r + leaves_l);
-	}
-	if (tree->left == NULL && tree->right != NULL)
-	{
-		leaves_r = -1 + binary_tree_balance(tree->right);
-		return (leaves_r);
-	}
-	if (tree->left != NULL && tree->right == NULL)
-	{
-		leaves_l = 1 + binary_tree_balance(tree->left);
-		return (leaves_l);
-	}
-
-	return (0);
+	height_l = tree->left ? binary_tree_height(tree->left) : 0;
+	height_r = tree->right ? binary_tree_height(tree->right) : 0;
+	return ((height_l > height_r ? height_l : height_r) + 1);
 }
-
 
 
 size_t binary_tree_nodes(const binary_tree_t *tree)
@@ -190,16 +188,6 @@ binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value)
 	
 	parent->left = left_node;
 	return (left_node);
-}
-
-size_t binary_tree_height(const binary_tree_t *tree)
-{
-	size_t height_l;
-	size_t height_r;
-	
-	height_l = tree->left ? 1 + binary_tree_height(tree->left) : 0;
-	height_r = tree->right ? 1 + binary_tree_height(tree->right) : 0;
-	return (height_l > height_r ? height_l : height_r);
 }
 
 void binary_tree_print(const binary_tree_t *tree)
