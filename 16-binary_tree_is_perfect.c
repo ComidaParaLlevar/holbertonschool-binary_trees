@@ -8,7 +8,7 @@
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
 	int expectedDepth = binary_tree_depth(tree);
-	bool check = !isPerfect(tree, expectedDepth);
+	bool check = isPerfect(tree, expectedDepth);
 
 	return (check);
 }
