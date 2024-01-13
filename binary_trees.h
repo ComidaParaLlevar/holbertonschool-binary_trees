@@ -47,5 +47,6 @@ int binary_tree_balance(const binary_tree_t *tree);
 int binary_tree_is_perfect(const binary_tree_t *tree);
 int binary_tree_is_full(const binary_tree_t *tree);
 bool isPerfect(const binary_tree_t *tree, int expectedDepth);
+int find_depth_left(const binary_tree_t *tree);
 
 #endif
