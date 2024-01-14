@@ -44,9 +44,10 @@ binary_tree_t *binary_tree_sibling(binary_tree_t *node);
 binary_tree_t *binary_tree_uncle(binary_tree_t *node);
 size_t binary_tree_nodes(const binary_tree_t *tree);
 int binary_tree_balance(const binary_tree_t *tree);
-int binary_tree_is_perfect(const binary_tree_t *tree);
 int binary_tree_is_full(const binary_tree_t *tree);
-bool isPerfect(const binary_tree_t *tree, int expectedDepth);
-int find_depth_left(const binary_tree_t *tree);
+int is_full_recursive(const binary_tree_t *tree);
+size_t binary_tree_height(const binary_tree_t *tree);
+int is_perfect_recursive(const binary_tree_t *tree, size_t d, size_t level);
+int binary_tree_is_perfect(const binary_tree_t *tree);
 
 #endif
